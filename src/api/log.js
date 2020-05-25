@@ -7,7 +7,7 @@
  */ 
 // import { axios } from '@/utils/request'
 
-export function uploadLog ({stackInfo, ext, logType}) {
+export function uploadLog ({stackInfo, ext, logType}, url) {
   const parameter = {
     act_id: '1404',
     log_type: logType,
@@ -15,10 +15,9 @@ export function uploadLog ({stackInfo, ext, logType}) {
     ext
   }
   return axios({
-    // url: '/',
     method: 'post',
     data: parameter,
-    baseURL: 'http://10.46.199.205:8895/distribute',
+    baseURL: url,
     headers: {
       'Gw-key': 'wugou4s1fl2ii5sbbgog9001'
     }
