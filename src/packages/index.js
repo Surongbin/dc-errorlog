@@ -105,8 +105,16 @@ class GlobalError {
     uploadLog(errorParams, this.apiUrl)
   }
 }
+function install ({url, logType}) {
+  if (install.installed) {
+    return false;
+  }
 
-export default new GlobalError()
+  install.installed = true;
+}
+GlobalError.install = install
+
+export default GlobalError
 // const GlobalError = {
 //   install (Vue) {
 //     Vue.config.errorHandler = errorHandler
