@@ -3,9 +3,9 @@
  * @Author: cooky
  * @Date: 2020-05-14 17:33:03
  * @LastEditors: cooky
- * @LastEditTime: 2020-05-14 17:36:41
+ * @LastEditTime: 2020-05-26 14:36:52
  */ 
-// import { axios } from '@/utils/request'
+import { axios } from '@/utils/request'
 
 export function uploadLog ({stackInfo, ext, logType}, url) {
   const parameter = {
