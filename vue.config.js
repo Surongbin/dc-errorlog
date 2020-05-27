@@ -112,7 +112,7 @@ module.exports = {
   },
   // disable source map in production
   productionSourceMap: true,
-  lintOnSave: undefined,
+  lintOnSave: false,
   // babel-loader no-ignore node_modules/*
   transpileDependencies: []
 }

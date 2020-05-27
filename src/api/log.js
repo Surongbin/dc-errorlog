@@ -6,14 +6,14 @@
  * @LastEditTime: 2020-05-27 20:19:59
  */ 
 import { axios } from '@/utils/request'
-
-export function uploadLog ({stackInfo, ext, logType}, url) {
+export function uploadLog ({stackInfo, ext, logType, levelName = 'ERROR'}, url) {
   const parameter = {
     act_id: '1404',
     log_type: logType,
-    stack_info: [{ ...stackInfo, level_name: 'ERROR' }],
+    stack_info: [{ ...stackInfo, level_name: levelName }],
     ext
   }
+  // cooky
   console.log(parameter, url)
   return axios({
     method: 'post',
