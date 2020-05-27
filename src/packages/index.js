@@ -3,10 +3,11 @@
  * @Author: cooky
  * @Date: 2020-05-14 17:31:55
  * @LastEditors: cooky
- * @LastEditTime: 2020-05-27 19:52:34
+ * @LastEditTime: 2020-05-27 20:24:41
  */ 
 import { uploadLog } from '@/api/log'
 // eslint-disable-next-line no-undef
+// z.b = 2
 const GlobalError = {
   install (Vue, {url, logType}) {
     this.apiUrl = url
@@ -29,13 +30,13 @@ const GlobalError = {
         this.error(e)
     }
     // 当 Promise 被 reject 并且没有得到处理理的时候，会触发 unhandledrejection 事件。所以可以对此事件进⾏行行监听，将错误信息捕获上报。
-    window.addEventListener('unhandledrejection', e => {
-      console.log('unhandledrejection==', e, e.stack)
-      this.error({
-        message: '未处理的unhandledrejection事件：' + e.reason,
-        ...e
-      })
-    })
+    // window.addEventListener('unhandledrejection', e => {
+    //   console.log('unhandledrejection==', e, e.stack)
+    //   this.error({
+    //     message: '未处理的unhandledrejection事件：' + e.reason,
+    //     ...e
+    //   })
+    // })
   },
   initVueEvent (Vue) {
     Vue.config.errorHandler = this.error.bind(this)
@@ -60,6 +61,9 @@ const GlobalError = {
             }
           }
         })
+      },
+      renderError (e) {
+        console.log('renderError', e)
       }
     })
     Vue.prototype.$throw = this.error.bind(this)
@@ -70,12 +74,12 @@ const GlobalError = {
       errorMsg: err.message,
       errorCode,
       stack: err.stack,
-      logType: this.logType
     }
+    console.log(err.stack)
     if (typeof console !== 'undefined' && typeof console.error === 'function') {
       console.error(err.message, errorParams)
     }
-    uploadLog(errorParams, this.apiUrl)
+    uploadLog({stackInfo: errorParams, logType: this.logType}, this.apiUrl)
   }
 }
 export default GlobalError

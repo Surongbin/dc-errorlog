@@ -3,9 +3,9 @@
  * @Author: cooky
  * @Date: 2020-05-14 17:33:03
  * @LastEditors: cooky
- * @LastEditTime: 2020-05-27 19:53:21
+ * @LastEditTime: 2020-05-27 20:19:59
  */ 
-// import { axios } from '@/utils/request'
+import { axios } from '@/utils/request'
 
 export function uploadLog ({stackInfo, ext, logType}, url) {
   const parameter = {
@@ -15,12 +15,12 @@ export function uploadLog ({stackInfo, ext, logType}, url) {
     ext
   }
   console.log(parameter, url)
-  // return axios({
-  //   method: 'post',
-  //   data: parameter,
-  //   baseURL: url,
-  //   headers: {
-  //     'Gw-key': 'wugou4s1fl2ii5sbbgog9001'
-  //   }
-  // })
+  return axios({
+    method: 'post',
+    data: parameter,
+    // baseURL: '/', // url,
+    headers: {
+      'Gw-key': 'wugou4s1fl2ii5sbbgog9001'
+    }
+  })
 }
