@@ -34,23 +34,18 @@ const errorHandler = function (err) {
 //   }
 // })
 
-class GlobalError {
-  static instance;
-  static getInstance () {
-    if(!this.instance) {
-        this.instance = new GlobalError(name);
-    }
-    return this.instance;
-  }
-  constructor() {
-    this.instance = null
-  }
+const GlobalError = {
+  install (Vue, {url, logType}) {
+    this.apiUrl = url
+    this.logType = logType
+    this.initEvent()
+    this.initVueEvent(Vue)
+  },
   init ({url, logType}) {
     this.apiUrl = url
     this.logType = logType
     this.initEvent()
-    this.initVueEvent()
-  }
+  },
   initGlobalEvent () {
     window.onerror =  (msg, url, lineNo, columnNo, e) => {
         console.log(msg, url, lineNo, columnNo, e)
@@ -66,8 +61,8 @@ class GlobalError {
           errorHandler(e.reason)
       }
     })
-  }
-  initVueEvent () {
+  },
+  initVueEvent (Vue) {
     Vue.config.errorHandler = errorHandler
     Vue.mixin({
       beforeCreate () {
@@ -93,7 +88,7 @@ class GlobalError {
       }
     })
     Vue.prototype.$throw = errorHandler
-  }
+  },
   error (err, { type = 'code', errorCode = 203001 }) {
     const errorParams = {
       type,
@@ -105,16 +100,16 @@ class GlobalError {
     uploadLog(errorParams, this.apiUrl)
   }
 }
-function install ({url, logType}) {
-  if (install.installed) {
-    return false
-  }
-  install.installed = true
-  console.log(url, logType)
-}
-GlobalError.install = install
-
 export default GlobalError
+
+  // function install ({url, logType}) {
+  //   if (install.installed) {
+  //     return false
+  //   }
+  //   install.installed = true
+  //   console.log('install: ', url, logType)
+  // }
+  // GlobalError.install = install
 // const GlobalError = {
 //   install (Vue) {
 //     Vue.config.errorHandler = errorHandler
