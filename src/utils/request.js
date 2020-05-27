@@ -3,7 +3,7 @@
  * @Author: cooky
  * @Date: 2019-09-17 20:36:10
  * @LastEditors: cooky
- * @LastEditTime: 2020-05-14 17:36:21
+ * @LastEditTime: 2020-05-27 19:19:13
  */
 import axios from 'axios'
 import {
@@ -22,6 +22,7 @@ const err = (error) => {
 
 // 响应拦截器
 service.interceptors.response.use((response) => {
+  // Promise.reject('未拦截错误')
   return response.data
 }, err)
 

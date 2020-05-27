@@ -3,67 +3,42 @@
  * @Author: cooky
  * @Date: 2020-05-14 17:31:55
  * @LastEditors: cooky
- * @LastEditTime: 2020-05-26 14:36:32
+ * @LastEditTime: 2020-05-27 19:52:34
  */ 
 import { uploadLog } from '@/api/log'
-const errorHandler = function (err) {
-  const errorParams = {
-    type: 'code',
-    errorMsg: err.message,
-    errorCode: 203001,
-    stack: err.stack
-  }
-  console.log(err.message, errorParams)
-  uploadLog(errorParams)
-}
-// 当发⽣生 JavaScript 运⾏行行时错误（包括处理理程序中引发的语法错误和异常）时，使⽤用接⼝口 ErrorEvent 的 error 事件将在 window 被触发，并被 window.onerror() 调⽤用
-// window.onerror =  (msg, url, lineNo, columnNo, e) => {
-//     console.log(msg, url, lineNo, columnNo, e)
-//     if (msg === 'Script error.') {
-//         return
-//     }
-//     // errorHandler(e)
-// }
-
-// // 当 Promise 被 reject 并且没有得到处理理的时候，会触发 unhandledrejection 事件。所以可以对此事件进⾏行行监听，将错误信息捕获上报。
-// window.addEventListener('unhandledrejection', e => {
-//   if ((e.reason)) {
-//       errorHandler('未处理', e.reason)
-//   } else {
-//       errorHandler(e.reason)
-//   }
-// })
-
+// eslint-disable-next-line no-undef
 const GlobalError = {
   install (Vue, {url, logType}) {
     this.apiUrl = url
     this.logType = logType
-    this.initEvent()
     this.initVueEvent(Vue)
+    this.initGlobalEvent()
   },
   init ({url, logType}) {
     this.apiUrl = url
     this.logType = logType
-    this.initEvent()
+    this.initGlobalEvent()
   },
   initGlobalEvent () {
+    // 当发⽣生 JavaScript 运⾏行行时错误（包括处理理程序中引发的语法错误和异常）时，使⽤用接⼝口 ErrorEvent 的 error 事件将在 window 被触发，并被 window.onerror() 调⽤用
     window.onerror =  (msg, url, lineNo, columnNo, e) => {
-        console.log(msg, url, lineNo, columnNo, e)
-        if (msg === 'Script error.') {
-            return
-        }
-        // errorHandler(e)
+        console.log('onerror==',msg, url, lineNo, columnNo, e)
+        // if (msg === 'Script error.') {
+        //     return
+        // }
+        this.error(e)
     }
+    // 当 Promise 被 reject 并且没有得到处理理的时候，会触发 unhandledrejection 事件。所以可以对此事件进⾏行行监听，将错误信息捕获上报。
     window.addEventListener('unhandledrejection', e => {
-      if ((e.reason)) {
-          errorHandler('未处理', e.reason)
-      } else {
-          errorHandler(e.reason)
-      }
+      console.log('unhandledrejection==', e, e.stack)
+      this.error({
+        message: '未处理的unhandledrejection事件：' + e.reason,
+        ...e
+      })
     })
   },
   initVueEvent (Vue) {
-    Vue.config.errorHandler = errorHandler
+    Vue.config.errorHandler = this.error.bind(this)
     Vue.mixin({
       beforeCreate () {
         const methods = this.$options.methods
@@ -87,20 +62,52 @@ const GlobalError = {
         })
       }
     })
-    Vue.prototype.$throw = errorHandler
+    Vue.prototype.$throw = this.error.bind(this)
   },
-  error (err, { type = 'code', errorCode = 203001 }) {
+  error (err, { type = 'code', errorCode = 203001 } = {}) {
     const errorParams = {
       type,
       errorMsg: err.message,
       errorCode,
-      stack: err.stack
+      stack: err.stack,
+      logType: this.logType
     }
-    console.log(err.message, errorParams)
+    if (typeof console !== 'undefined' && typeof console.error === 'function') {
+      console.error(err.message, errorParams)
+    }
     uploadLog(errorParams, this.apiUrl)
   }
 }
 export default GlobalError
+
+// const errorHandler = function (err) {
+//   const errorParams = {
+//     type: 'code',
+//     errorMsg: err.message,
+//     errorCode: 203001,
+//     stack: err.stack
+//   }
+//   console.log(err.message, errorParams)
+//   uploadLog(errorParams)
+// }
+// 当发⽣生 JavaScript 运⾏行行时错误（包括处理理程序中引发的语法错误和异常）时，使⽤用接⼝口 ErrorEvent 的 error 事件将在 window 被触发，并被 window.onerror() 调⽤用
+// window.onerror =  (msg, url, lineNo, columnNo, e) => {
+//     console.log(msg, url, lineNo, columnNo, e)
+//     // if (msg === 'Script error.') {
+//     //     return
+//     // }
+//     // errorHandler(e)
+// }
+
+// // 当 Promise 被 reject 并且没有得到处理理的时候，会触发 unhandledrejection 事件。所以可以对此事件进⾏行行监听，将错误信息捕获上报。
+// window.addEventListener('unhandledrejection', e => {
+//   if ((e.reason)) {
+//       errorHandler('未处理', e.reason)
+//   } else {
+//       errorHandler(e.reason)
+//   }
+// })
+
 
   // function install ({url, logType}) {
   //   if (install.installed) {

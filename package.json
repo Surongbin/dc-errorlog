@@ -39,5 +39,6 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "main": "src/packages/index"
 }
