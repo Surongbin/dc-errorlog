@@ -1,6 +1,6 @@
 {
   "name": "dc-front-errorlog",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -40,5 +40,5 @@
     "last 2 versions",
     "not dead"
   ],
-  "main": "src/packages/index"
+  "main": "./src/packages/index"
 }

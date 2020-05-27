@@ -9,10 +9,18 @@ function resolve (dir) {
 // vue.config.js
 module.exports = {
   configureWebpack: {
+    output: {
+      path: path.resolve(__dirname, './dist'),
+      // publicPath: '/dist/',
+      filename: 'dclog.min.js',
+      libraryTarget: "umd",
+      library: "dclog"
+    },
     plugins: [
       // Ignore all locale files of moment.js
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
     ],
+    devtool: 'source-map'
     // 生产环境移除console
     // optimization: {
     //   minimizer: [

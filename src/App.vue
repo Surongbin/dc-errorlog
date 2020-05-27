@@ -22,7 +22,7 @@ export default {
   components: { Hello },
   mounted () {
     // eslint-disable-next-line no-undef
-    // x.a = 1 // errorHandler捕获
+    x.a = 1 // errorHandler捕获
     // Promise.reject('未拦截错误1') // unhandledrejection 捕获
     // uploadLog({}, this.apiUrl)
     // this.foo() // errorHandler捕获 

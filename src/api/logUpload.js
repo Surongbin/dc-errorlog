@@ -18,7 +18,7 @@ export function uploadLog ({stackInfo, ext, logType, levelName = 'ERROR'}, url) 
   return axios({
     method: 'post',
     data: parameter,
-    // baseURL: '/', // url,
+    baseURL: '/distribute', // url,
     headers: {
       'Gw-key': 'wugou4s1fl2ii5sbbgog9001'
     }

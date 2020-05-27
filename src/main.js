@@ -7,16 +7,16 @@
  */ 
 import Vue from 'vue'
 import App from './App.vue'
-import GlobalError from '@/packages'
-import { test} from './packages/test'
+// import GlobalError from '@/packages'
+// import { test} from './packages/test'
 
 // eslint-disable-next-line no-undef
 // y.a = 1
-test()
-Vue.use(GlobalError, {
-  // url: 'http://10.46.199.205:8895/',
-  logType: 'dali'
-})
+// test()
+// Vue.use(GlobalError, {
+//   // url: 'http://10.46.199.205:8895/',
+//   logType: 'dali'
+// })
 
 // GlobalError.init({
 //   url: 'http://10.46.199.205:8895/distribute',

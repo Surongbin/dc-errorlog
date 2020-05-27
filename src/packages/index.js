@@ -5,7 +5,7 @@
  * @LastEditors: cooky
  * @LastEditTime: 2020-05-27 20:24:41
  */ 
-import { uploadLog } from '@/api/log'
+import { uploadLog } from '../api/logUpload'
 // eslint-disable-next-line no-undef
 // z.b = 2
 const GlobalError = {
