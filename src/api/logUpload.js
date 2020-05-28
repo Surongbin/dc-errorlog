@@ -5,22 +5,23 @@
  * @LastEditors: cooky
  * @LastEditTime: 2020-05-27 20:19:59
  */ 
-import { axios } from '@/utils/request'
-export function uploadLog ({stackInfo, ext, logType, levelName = 'ERROR'}, url) {
+import { axios } from '../utils/request'
+import {config} from '../config'
+
+export function uploadLog ({stackInfo, ext, logType, levelName = 'ERROR'}, url = config.requestUrl) {
   const parameter = {
     act_id: '1404',
     log_type: logType,
     stack_info: [{ ...stackInfo, level_name: levelName }],
     ext
   }
-  // cooky
-  console.log(parameter, url)
   return axios({
     method: 'post',
     data: parameter,
-    baseURL: '/distribute', // url,
+    url,
+    baseURL: '/',
     headers: {
-      'Gw-key': 'wugou4s1fl2ii5sbbgog9001'
+      'Gw-key': config.gwKey
     }
   })
 }

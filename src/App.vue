@@ -7,19 +7,12 @@
 --> 
 <template>
 <!--  {{msg}}无法捕获未定义 -->
-  <div>hello <Hello/></div>
+  <div>hello</div>
 </template>
 
 <script>
 // import { uploadLog } from '@/api/log'
-import Hello from '@/components/hello'
 export default {
-  data () {
-    return {
-      
-    }
-  },
-  components: { Hello },
   mounted () {
     // eslint-disable-next-line no-undef
     x.a = 1 // errorHandler捕获

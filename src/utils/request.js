@@ -7,7 +7,7 @@
  */
 import axios from 'axios'
 import {
-  VueAxios
+  Axios
 } from './axios'
 
 // 创建 axios 实例
@@ -22,18 +22,9 @@ const err = (error) => {
 
 // 响应拦截器
 service.interceptors.response.use((response) => {
-  // Promise.reject('未拦截错误')
   return response.data
 }, err)
 
-const installer = {
-  vm: {},
-  install (Vue) {
-    Vue.use(VueAxios, service)
-  }
-}
-
 export {
-  installer as VueAxios,
   service as axios
 }

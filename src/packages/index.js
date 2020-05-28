@@ -6,8 +6,6 @@
  * @LastEditTime: 2020-05-27 20:24:41
  */ 
 import { uploadLog } from '../api/logUpload'
-// eslint-disable-next-line no-undef
-// z.b = 2
 const GlobalError = {
   install (Vue, {url, logType}) {
     this.apiUrl = url
@@ -47,10 +45,9 @@ const GlobalError = {
       errorCode,
       stack: err.stack,
     }
-    console.log('uploadLog ', err.stack)
-    // if (typeof console !== 'undefined' && typeof console.error === 'function') {
-    //   console.error(err.message, errorParams)
-    // }
+    if (typeof console !== 'undefined' && typeof console.error === 'function') {
+      console.error(err.stack, errorParams)
+    }
     uploadLog({stackInfo: errorParams, logType: this.logType}, this.apiUrl)
   }
 }
