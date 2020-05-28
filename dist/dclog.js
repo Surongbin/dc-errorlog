@@ -1,1 +1,136 @@
-(function(e,t){if("object"===typeof exports&&"object"===typeof module)module.exports=t();else if("function"===typeof define&&define.amd)define([],t);else{var r=t();for(var n in r)("object"===typeof exports?exports:e)[n]=r[n]}})(window,(function(){return function(e){function t(t){for(var n,u,a=t[0],l=t[1],s=t[2],f=0,p=[];f<a.length;f++)u=a[f],Object.prototype.hasOwnProperty.call(o,u)&&o[u]&&p.push(o[u][0]),o[u]=0;for(n in l)Object.prototype.hasOwnProperty.call(l,n)&&(e[n]=l[n]);c&&c(t);while(p.length)p.shift()();return i.push.apply(i,s||[]),r()}function r(){for(var e,t=0;t<i.length;t++){for(var r=i[t],n=!0,a=1;a<r.length;a++){var l=r[a];0!==o[l]&&(n=!1)}n&&(i.splice(t--,1),e=u(u.s=r[0]))}return e}var n={},o={main:0},i=[];function u(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,u),r.l=!0,r.exports}u.m=e,u.c=n,u.d=function(e,t,r){u.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},u.r=function(e){"undefined"!==typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},u.t=function(e,t){if(1&t&&(e=u(e)),8&t)return e;if(4&t&&"object"===typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(u.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var n in e)u.d(r,n,function(t){return e[t]}.bind(null,n));return r},u.n=function(e){var t=e&&e.__esModule?function(){return e["default"]}:function(){return e};return u.d(t,"a",t),t},u.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},u.p="/";var a=window["webpackJsonp"]=window["webpackJsonp"]||[],l=a.push.bind(a);a.push=t,a=a.slice();for(var s=0;s<a.length;s++)t(a[s]);var c=l;return i.push(["b476","chunk-vendors"]),r()}({b476:function(e,t,r){"use strict";r.r(t);r("e260"),r("e6cf"),r("cca6"),r("a79d");var n=r("5530"),o=(r("d3b7"),r("bc3a")),i=r.n(o),u=i.a.create({baseURL:"/distribute",timeout:1e4}),a=function(e){return Promise.reject(e)};u.interceptors.response.use((function(e){return e.data}),a);var l={gwKey:"wugou4s1fl2ii5sbbgog9001",requestUrl:"/distribute"};function s(e){var t=e.stackInfo,r=e.ext,o=e.logType,i=e.levelName,a=void 0===i?"ERROR":i,s=arguments.length>1&&void 0!==arguments[1]?arguments[1]:l.requestUrl,c={act_id:"1404",log_type:o,stack_info:[Object(n["a"])(Object(n["a"])({},t),{},{level_name:a})],ext:r};return u({method:"post",data:c,url:s,baseURL:"/",headers:{"Gw-key":l.gwKey}})}var c={install:function(e,t){var r=t.url,n=t.logType;this.apiUrl=r,this.logType=n,this.initVueEvent(e),this.initGlobalEvent()},init:function(e){var t=e.url,r=e.logType;this.apiUrl=t,this.logType=r,this.initGlobalEvent()},initGlobalEvent:function(){var e=this;window.addEventListener("unhandledrejection",(function(e){throw e.reason})),window.addEventListener("error",(function(t){if(console.log("error event: ",t),"Script error."!==t.message)return e.error(t.error),!0}),!0)},initVueEvent:function(e){e.config.errorHandler=this.error.bind(this),e.prototype.$throw=this.error.bind(this)},error:function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.type,n=void 0===r?"code":r,o=t.errorCode,i=void 0===o?203001:o,u={type:n,errorMsg:e.message,errorCode:i,stack:e.stack};"undefined"!==typeof console&&"function"===typeof console.error&&console.error(e.stack,u),s({stackInfo:u,logType:this.logType},this.apiUrl)}};t["default"]=c}})}));
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(window, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/dist/";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./src/config/index.js":
+/*!*****************************!*\
+  !*** ./src/config/index.js ***!
+  \*****************************/
+/*! exports provided: config */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"config\", function() { return config; });\nconst config = {\n    gwKey: 'wugou4s1fl2ii5sbbgog9001',\n    requestUrl: '/distribute'\n}\n\n//# sourceURL=webpack:///./src/config/index.js?");
+
+/***/ }),
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _logUpload__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./logUpload */ \"./src/logUpload.js\");\n/*\n * @Description: \n * @Author: cooky\n * @Date: 2020-05-14 17:31:55\n * @LastEditors: cooky\n * @LastEditTime: 2020-05-27 20:24:41\n */ \n\nconst GlobalError = {\n  install (Vue, {url, logType, success, fail}) {\n    this.apiUrl = url\n    this.logType = logType\n    this.successCallBack = success\n    this.failCallBack = fail\n    this.initVueEvent(Vue)\n    this.initGlobalEvent()\n  },\n  init ({url, logType, success, fail}) {\n    this.apiUrl = url\n    this.logType = logType\n    this.successCallBack = success\n    this.failCallBack = fail\n    this.initGlobalEvent()\n  },\n  initGlobalEvent () {\n    // 当 Promise 被 reject 并且没有得到处理理的时候，会触发 unhandledrejection 事件。所以可以对此事件进⾏行行监听，将错误信息捕获上报。\n    // 异步事件没有进行try catch捕获，也会触发unhandledrejection事件\n    window.addEventListener('unhandledrejection', e => {\n      throw e.reason // reason是error对象， 此处抛出错误，在error事件中统一处理\n    })\n    // 当发⽣生 JavaScript 运⾏行行时错误（包括处理理程序中引发的语法错误和异常）时，使⽤用接⼝口 ErrorEvent 的 error 事件将在 window 被触发，并被 window.onerror() 调⽤用\n    window.addEventListener('error', args => {\n      console.log('error event: ', args)\n      if (args.message === 'Script error.') {\n        return\n      }\n      this.error(args.error)\n      return true\n    }, true)\n  },\n  initVueEvent (Vue) {\n    Vue.config.errorHandler = this.error.bind(this)\n    Vue.prototype.$throw = this.error.bind(this)\n  },\n  error (err, { type = 'code', errorCode = 203001 } = {}) {\n    const errorParams = {\n      type,\n      errorMsg: err.message,\n      errorCode,\n      stack: err.stack,\n    }\n    if (typeof console !== 'undefined' && typeof console.error === 'function') {\n      console.error(err.stack, errorParams)\n    }\n    Object(_logUpload__WEBPACK_IMPORTED_MODULE_0__[\"uploadLog\"])({stackInfo: errorParams, logType: this.logType}, this.apiUrl, this.successCallBack, this.failCallBack)\n  }\n}\nwindow.GlobalError = GlobalError\n/* harmony default export */ __webpack_exports__[\"default\"] = (GlobalError);\n\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/logUpload.js":
+/*!**************************!*\
+  !*** ./src/logUpload.js ***!
+  \**************************/
+/*! exports provided: uploadLog */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"uploadLog\", function() { return uploadLog; });\n/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config */ \"./src/config/index.js\");\n/*\r\n * @Description: 日志上报接口\r\n * @Author: cooky\r\n * @Date: 2020-05-14 17:33:03\r\n * @LastEditors: cooky\r\n * @LastEditTime: 2020-05-27 20:19:59\r\n */ \r\n\r\n\r\nfunction uploadLog ({stackInfo, ext, logType, levelName = 'ERROR'}, url = _config__WEBPACK_IMPORTED_MODULE_0__[\"config\"].requestUrl,  successCallBack, failCallBack) {\r\n  const parameter = {\r\n    act_id: '1404',\r\n    log_type: logType,\r\n    stack_info: [{ ...stackInfo, level_name: levelName }],\r\n    ext\r\n  }\r\n  // post(url, parameter)\r\n  ajax({\r\n        type: 'post',\r\n        data: parameter,\r\n        url,\r\n        headers: {\r\n          'Gw-key': _config__WEBPACK_IMPORTED_MODULE_0__[\"config\"].gwKey\r\n        },\r\n        success: successCallBack,\r\n        fail: failCallBack\r\n      })\r\n}\r\n// export function post(url, parameter) {\r\n//     var XMLHttpRequest = window.__oXMLHttpRequest_ || window.XMLHttpRequest;\r\n//     if (typeof XMLHttpRequest === 'function') {\r\n//       try {\r\n//         var xhr = new XMLHttpRequest();\r\n//         xhr.open(\"POST\", url, !0)\r\n//         xhr.setRequestHeader(\"Content-Type\", \"application/json;charset=UTF-8\")\r\n//         xhr.setRequestHeader(\"Gw-key\", config.gwKey)\r\n//         xhr.send(JSON.stringify(parameter))\r\n//       } catch (e) {\r\n//         console.error('Failed to log, POST请求失败', e)\r\n//       }\r\n//     } else {\r\n//       console.error('Failed to log, 浏览器不支持XMLHttpRequest')\r\n//     }\r\n//   }\r\nfunction ajax(options) {\r\n    options = options || {};\r\n    options.type = (options.type || \"GET\").toUpperCase();\r\n    options.dataType = \"json\";\r\n    var params = formatParams(options.data);\r\n\r\n    if (window.XMLHttpRequest) {\r\n       var xhr = new XMLHttpRequest();\r\n    } else { \r\n       var xhr = new ActiveXObject('Microsoft.XMLHTTP');\r\n    }\r\n\r\n    xhr.onreadystatechange = function () {\r\n       if (xhr.readyState == 4) {\r\n           var status = xhr.status;\r\n           if (status >= 200 && status < 300) {\r\n               options.success && options.success(xhr.responseText, xhr.responseXML);\r\n           } else {\r\n               options.fail && options.fail(status);\r\n           }\r\n       }\r\n    }\r\n\r\n    if (options.type == \"GET\") {\r\n       xhr.open(\"GET\", options.url + \"?\" + params, true);\r\n       xhr.send(null);\r\n    } else if (options.type == \"POST\") {\r\n       xhr.open(\"POST\", options.url, true);\r\n       xhr.setRequestHeader(\"Content-Type\", \"application/json;charset=UTF-8\")\r\n       Object.keys(options.headers).forEach(key => {\r\n         xhr.setRequestHeader(key, options.headers[key])\r\n       })\r\n       //设置表单提交时的内容类型\r\n      //  xhr.setRequestHeader(\"Content-Type\", \"application/x-www-form-urlencoded\");\r\n       xhr.send(JSON.stringify(options.data));\r\n    }\r\n}\r\n/*\r\n*格式化参数\r\n*/\r\nfunction formatParams(data) {\r\n  var arr = [];\r\n  for (var name in data) {\r\n      arr.push(encodeURIComponent(name) + \"=\" + encodeURIComponent(data[name]));\r\n  }\r\n  arr.push((\"v=\" + Math.random()).replace(\".\",\"\"));\r\n  return arr.join(\"&\");\r\n}\n\n//# sourceURL=webpack:///./src/logUpload.js?");
+
+/***/ })
+
+/******/ });
+});

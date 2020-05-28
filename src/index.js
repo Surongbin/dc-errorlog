@@ -5,17 +5,21 @@
  * @LastEditors: cooky
  * @LastEditTime: 2020-05-27 20:24:41
  */ 
-import { uploadLog } from '../api/logUpload'
+import { uploadLog } from './logUpload'
 const GlobalError = {
-  install (Vue, {url, logType}) {
+  install (Vue, {url, logType, success, fail}) {
     this.apiUrl = url
     this.logType = logType
+    this.successCallBack = success
+    this.failCallBack = fail
     this.initVueEvent(Vue)
     this.initGlobalEvent()
   },
-  init ({url, logType}) {
+  init ({url, logType, success, fail}) {
     this.apiUrl = url
     this.logType = logType
+    this.successCallBack = success
+    this.failCallBack = fail
     this.initGlobalEvent()
   },
   initGlobalEvent () {
@@ -48,7 +52,8 @@ const GlobalError = {
     if (typeof console !== 'undefined' && typeof console.error === 'function') {
       console.error(err.stack, errorParams)
     }
-    uploadLog({stackInfo: errorParams, logType: this.logType}, this.apiUrl)
+    uploadLog({stackInfo: errorParams, logType: this.logType}, this.apiUrl, this.successCallBack, this.failCallBack)
   }
 }
+window.GlobalError = GlobalError
 export default GlobalError
