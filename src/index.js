@@ -7,19 +7,15 @@
  */ 
 import { uploadLog } from './logUpload'
 const GlobalError = {
-  install (Vue, {url, logType, success, fail}) {
+  install (Vue, {url, logType}) {
     this.apiUrl = url
     this.logType = logType
-    this.successCallBack = success
-    this.failCallBack = fail
     this.initVueEvent(Vue)
     this.initGlobalEvent()
   },
-  init ({url, logType, success, fail}) {
+  init ({url, logType}) {
     this.apiUrl = url
     this.logType = logType
-    this.successCallBack = success
-    this.failCallBack = fail
     this.initGlobalEvent()
   },
   initGlobalEvent () {
@@ -30,7 +26,6 @@ const GlobalError = {
     })
     // 当发⽣生 JavaScript 运⾏行行时错误（包括处理理程序中引发的语法错误和异常）时，使⽤用接⼝口 ErrorEvent 的 error 事件将在 window 被触发，并被 window.onerror() 调⽤用
     window.addEventListener('error', args => {
-      console.log('error event: ', args)
       if (args.message === 'Script error.') {
         return
       }
@@ -52,7 +47,7 @@ const GlobalError = {
     if (typeof console !== 'undefined' && typeof console.error === 'function') {
       console.error(err.stack, errorParams)
     }
-    uploadLog({stackInfo: errorParams, logType: this.logType}, this.apiUrl, this.successCallBack, this.failCallBack)
+    uploadLog({stackInfo: errorParams, logType: this.logType}, this.apiUrl)
   }
 }
 window.GlobalError = GlobalError

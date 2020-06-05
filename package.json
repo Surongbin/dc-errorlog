@@ -1,6 +1,6 @@
 {
   "name": "dc-errorlog",
-  "version": "1.0.2",
+  "version": "1.0.2-beta.1",
   "description": "",
   "main": "./dist/dclog.js",
   "scripts": {
@@ -10,6 +10,9 @@
   "author": "",
   "license": "MIT",
   "private": false,
+  "publishConfig": {
+    "registry": "https://npm.dianchu.cc/repository/npm-inner/"
+  },
   "devDependencies": {
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
